@@ -1,0 +1,53 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "DeterministicFiniteStateMachineMain",
+            "request": "launch",
+            "mainClass": "com.formalLanguage.DeterministicFiniteStateMachineMain",
+            "projectName": "formale-sprachen-26",
+            "args": [
+                "--stateFile=src/main/java/com/example/abMachine.txt",
+                "--inputWord=aabab"
+            ],
+    },
+        {
+            "type": "java",
+            "name": "DeterministicStackMachineMain",
+            "request": "launch",
+            "mainClass": "com.formalLanguage.DeterministicStackMachineMain",
+            "projectName": "formale-sprachen-26",
+            "args": [
+                "--stateFile=src/main/java/com/example/anbnStackMachine.txt",
+                "--inputWord=aabb"
+        ],
+        }
+    ],
+    "inputs": [
+        {
+            "id": "fsmStateFile",
+            "type": "promptString",
+            "description": "Path to the FSM state table file",
+            "default": "src/test/resources/fsm_states.txt"
+        },
+        {
+            "id": "fsmInputWord",
+            "type": "promptString",
+            "description": "Input word for the FSM",
+            "default": "ab"
+        },
+        {
+            "id": "dsmStateFile",
+            "type": "promptString",
+            "description": "Path to the stack machine state file",
+            "default": "src/test/resources/dsm_states.txt"
+        },
+        {
+            "id": "dsmInputWord",
+            "type": "promptString",
+            "description": "Input word for the stack machine",
+            "default": "aabb"
+        }
+    ]
+}
