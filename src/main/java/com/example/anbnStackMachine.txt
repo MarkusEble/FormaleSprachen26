@@ -1,0 +1,2 @@
+q0: (#,a:q0,A#)(A,a:q0,AA)(A,b:q1,)
+q1: (A,b:q1,) accepting
