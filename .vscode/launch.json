@@ -11,7 +11,7 @@
                 "--stateFile=src/main/java/com/example/abMachine.txt",
                 "--inputWord=aabab"
             ],
-    },
+        },
         {
             "type": "java",
             "name": "DeterministicStackMachineMain",
@@ -21,6 +21,16 @@
             "args": [
                 "--stateFile=src/main/java/com/example/anbnStackMachine.txt",
                 "--inputWord=aabb"
+        ],
+        },
+        {
+            "type": "java",
+            "name": "GrammarMain",
+            "request": "launch",
+            "mainClass": "com.formalLanguage.GrammarMain",
+            "projectName": "formale-sprachen-26",
+            "args": [
+                "src/main/java/com/example/grammar.txt"
         ],
         }
     ],
