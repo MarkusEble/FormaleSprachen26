@@ -24,10 +24,19 @@ All following lines contain productions in the form
 
 # Operations
 Create a method that takes the name of a grammar file and reads it
+
+## Consistency check
 Create a method to do a consistency check
 - check if all terminal and non terminal symbols used in the productions are part of the sets N or T
 - for each non terminal symbol in N there must be a production rule with the non terminal symbol on the left side and not on the right side
 
+## Determine grammar type
+Create a method that determines if the grammar is regular
+- A grammar is right linear if one the right side of each production rule has at most one non-terminal on the right side of the rule and when a non-terminal occurs always it is in the right most position.
+- A grammar is left linear if one the right side of each production rule has at most one non-terminal on the right side of the rule and when a non-terminal occurs it is always in the left most position.
+- A grammar is regular if it right linear or left linear is
+
 # Example
 Create an example grammar file
 Create a main program that takes a grammar file as command line input argument and checks it for consistency
+checks if it is regular

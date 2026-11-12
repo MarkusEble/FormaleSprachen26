@@ -155,6 +155,61 @@ public class Grammar {
     return false;
   }
 
+  // Returns true if the grammar is regular (right-linear or left-linear)
+  public boolean isRegular() {
+    return isRightLinear() || isLeftLinear();
+  }
+
+  // Returns true if every production RHS has at most one non-terminal and it is always rightmost
+  private boolean isRightLinear() {
+    for (List<String> rhsList : m_productions.values()) {
+      for (String rhs : rhsList) {
+        if (!isRightLinearRhs(rhs)) return false;
+      }
+    }
+    return true;
+  }
+
+  // Returns true if the RHS has at most one non-terminal and it is in the rightmost position
+  private boolean isRightLinearRhs(String rhs) {
+    int nonTerminalCount = 0;
+    int lastNonTerminalPos = -1;
+    for (int i = 0; i < rhs.length(); i++) {
+      if (m_nonTerminals.contains(rhs.charAt(i))) {
+        nonTerminalCount++;
+        lastNonTerminalPos = i;
+      }
+    }
+    if (nonTerminalCount > 1) return false;
+    // Non-terminal must be at the last position if present
+    return nonTerminalCount == 0 || lastNonTerminalPos == rhs.length() - 1;
+  }
+
+  // Returns true if every production RHS has at most one non-terminal and it is always leftmost
+  private boolean isLeftLinear() {
+    for (List<String> rhsList : m_productions.values()) {
+      for (String rhs : rhsList) {
+        if (!isLeftLinearRhs(rhs)) return false;
+      }
+    }
+    return true;
+  }
+
+  // Returns true if the RHS has at most one non-terminal and it is in the leftmost position
+  private boolean isLeftLinearRhs(String rhs) {
+    int nonTerminalCount = 0;
+    int firstNonTerminalPos = -1;
+    for (int i = 0; i < rhs.length(); i++) {
+      if (m_nonTerminals.contains(rhs.charAt(i))) {
+        nonTerminalCount++;
+        if (firstNonTerminalPos < 0) firstNonTerminalPos = i;
+      }
+    }
+    if (nonTerminalCount > 1) return false;
+    // Non-terminal must be at the first position if present
+    return nonTerminalCount == 0 || firstNonTerminalPos == 0;
+  }
+
   public Set<Character> getNonTerminals() { return m_nonTerminals; }
   public Set<Character> getTerminals() { return m_terminals; }
   public char getStartSymbol() { return m_startSymbol; }

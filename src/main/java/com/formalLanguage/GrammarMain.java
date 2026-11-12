@@ -13,10 +13,11 @@ public class GrammarMain {
 
     String filePath = args[0];
 
-    // Load grammar and run consistency check
+    // Load grammar, run consistency check, and determine grammar type
     try {
       Grammar grammar = new Grammar(filePath);
       grammar.checkConsistency();
+      System.out.println("Grammar is regular: " + grammar.isRegular());
     } catch (IOException e) {
       System.err.println("Error: could not read grammar file '" + filePath + "': " + e.getMessage());
       System.exit(1);
