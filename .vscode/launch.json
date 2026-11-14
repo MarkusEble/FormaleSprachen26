@@ -32,6 +32,18 @@
             "args": [
                 "src/main/java/com/example/grammar.txt"
         ],
+        },
+        {
+            "type": "java",
+            "name": "SyntaxTopDownMain",
+            "request": "launch",
+            "mainClass": "com.formalLanguage.SyntaxTopDownMain",
+            "projectName": "formale-sprachen-26",
+            "args": [
+                "src/main/java/com/example/topdown_grammar.txt",
+                "aabb"
+            ],
+            "console": "integratedTerminal"
         }
     ],
     "inputs": [
