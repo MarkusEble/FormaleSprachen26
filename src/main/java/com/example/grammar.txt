@@ -1,6 +1,7 @@
 N = { S }
-T = { a, b }
+T = { a, b, c }
 S
 S : aS
 S : bS
 S :
+S : c

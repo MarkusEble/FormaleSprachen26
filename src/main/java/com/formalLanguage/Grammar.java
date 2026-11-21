@@ -210,6 +210,50 @@ public class Grammar {
     return nonTerminalCount == 0 || firstNonTerminalPos == 0;
   }
 
+  // Returns a map of each production rule to whether it is in Chomsky Normal Form.
+  // CNF allows: A -> a, A -> BC, or S -> "" (only if S never appears in any RHS)
+  public Map<String, Boolean> checkChomskyNormalForm() {
+    boolean startInRhs = isStartSymbolInAnyRhs();
+    Map<String, Boolean> result = new HashMap<>();
+    for (Map.Entry<Character, List<String>> entry : m_productions.entrySet()) {
+      char lhs = entry.getKey();
+      for (String rhs : entry.getValue()) {
+        String key = lhs + " : " + rhs;
+        result.put(key, isChomskyRule(lhs, rhs, startInRhs));
+      }
+    }
+    return result;
+  }
+
+  // Returns true if the start symbol appears on the RHS of any production
+  private boolean isStartSymbolInAnyRhs() {
+    for (List<String> rhsList : m_productions.values()) {
+      for (String rhs : rhsList) {
+        if (rhs.indexOf(m_startSymbol) >= 0) return true;
+      }
+    }
+    return false;
+  }
+
+  // Returns true if a single production rule is in Chomsky Normal Form
+  private boolean isChomskyRule(char lhs, String rhs, boolean startInRhs) {
+    // S -> "" is allowed only if S never appears in any RHS
+    if (rhs.isEmpty()) {
+      return lhs == m_startSymbol && !startInRhs;
+    }
+    // A -> a  (single terminal)
+    if (rhs.length() == 1 && m_terminals.contains(rhs.charAt(0))) {
+      return true;
+    }
+    // A -> BC  (exactly two non-terminals)
+    if (rhs.length() == 2
+        && m_nonTerminals.contains(rhs.charAt(0))
+        && m_nonTerminals.contains(rhs.charAt(1))) {
+      return true;
+    }
+    return false;
+  }
+
   public Set<Character> getNonTerminals() { return m_nonTerminals; }
   public Set<Character> getTerminals() { return m_terminals; }
   public char getStartSymbol() { return m_startSymbol; }

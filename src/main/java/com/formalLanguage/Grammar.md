@@ -36,7 +36,15 @@ Create a method that determines if the grammar is regular
 - A grammar is left linear if one the right side of each production rule has at most one non-terminal on the right side of the rule and when a non-terminal occurs it is always in the left most position.
 - A grammar is regular if it right linear or left linear is
 
+## Chomsky Normal Form
+A grammar rule is in Chomsky Normal Form if it has one of these forms
+- <NonTerminal> : <Terminal>
+- <NonTerminal> : <NonTerminal> <NonTerminal>
+- <StartSymbol> : nothing # this form is only allowed if <StartSymbol> does not occur on the right side of any production rule
+
 # Example
 Create an example grammar file
-Create a main program that takes a grammar file as command line input argument and checks it for consistency
-checks if it is regular
+Create a main program that takes a grammar file as command line input argument and
+- check it for consistency
+- checks if it is regular
+- check which rules are in Chomsky Normal Form
